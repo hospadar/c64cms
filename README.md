@@ -10,15 +10,13 @@ Uses jinja2 templates to handle the rendering.
 Check it out in action at [hospadaruk.org](http://hospadaruk.org/)
 
 Reqires jinja2, Markdown, and watchdog.  Should work fine in python 2 or 3
+
+To get it running, first make sure you have the dependencies:
 ```bash
 sudo pip install jinja2 Markdown watchdog
 ```
 
-2 Python files:
-
-- generator.py: does the actual site generation logic
-- build.py: main class, run python build.py -h for help
-
+Then either build the static files or run the development server (which will build and serve the static files):
 ```bash
 $ python build.py -h
 usage: build.py [-h] [-d] [-p PORT] [-t TEMPLATE_DIR] [in_path] [out_path]
