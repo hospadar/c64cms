@@ -38,6 +38,20 @@ optional arguments:
 $ python build.py -d -p 8080
 ```
 
+build.py has the following defaults:
+
+- **in_path**: 'source'
+- **out_path**: 'output'
+- **port**: 8000
+- **template_dir**: 'templates'
+
+You have a little control over how the file gets output, you can use markdown metadata to set the title and menu name, as well as selecting a per-markdown-file template to use for output.  The output name of the file will be a slug-ified version of the filename with the extension changed to ".html", for example "Your File.md" -> "Your-File.html".  When writing intra-site links, you should link to the output filename.
+```markdown
+title: The title of the page
+menu: The text you'd like to appear in the menu for this page.  Defaults to the title.
+template: defaults to 'default.html'
+```
+
 I like to Commodore-ize my images with imagemagick for a more seamless experience:
 ```bash
 convert in.jpg -scale 200x200 -monochrome -fill '#A5A5FF' -opaque white -fill '#4242E7' -opaque black  out.jpg
