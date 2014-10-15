@@ -38,7 +38,7 @@ optional arguments:
 $ python build.py -d -p 8080
 ```
 
-Commodore-izing images:
+I like to Commodore-ize my images with imagemagick for a more seamless experience:
 ```bash
 convert in.jpg -scale 200x200 -monochrome -fill '#A5A5FF' -opaque white -fill '#4242E7' -opaque black  out.jpg
 ```
