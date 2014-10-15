@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% macro write_menu(menu, name, page) -%}
+    
+    <ul class="menu-category">
+        <li class="menu-header closed">{{name}}</li>
+        <span class="menu-items">
+        {% for name, item in menu.contents.items() %}
+            {% if item.type == "page" %}
+                <li class="menu-item"> <a {% if page.output_path == item.output_path %}class="current"{% endif %} href="/{{item.output_path}}">{{item.menu}}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% for name, item in menu.contents.items() %}
+            {% if item.type == "category" %}
+                <li class="menu-item category-parent">{{ write_menu(item, name, page) }}</li>
+            {% endif %}
+        {% endfor %}
+        
+        </span>
+    </ul>
+{%- endmacro %}
+<html> 
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ page.title }}</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico?v2"/>
+        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("li.menu-header").on("click", function(){
+                    $(this).toggleClass("open closed");
+                    $(">span.menu-items", $(this).parent()).toggle();
+                });
+                $("a.current").parents(".menu-items").show();
+                $("a.current").parents(".menu-items").siblings("li.menu-header").removeClass("closed").addClass("open");
+            });
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <div class="title">**** LUKE R HOSPADARUK 9000.1 BASIC V2 ****</div>
+            <div class="title"> 64K RAM SYSTEM  38912 BASIC BYTES FREE</div>
+            READY.<br/>
+            L "menu",8,1
+            <div class="menu">
+                {{write_menu(menu, "root", page)}}
+            </div>
+            
+            <div class="body">
+                L "{{page.menu}}",8,1
+                <br/>
+                {{ page.content }}
+                <br/>
+                
+            </div>
+            <img class="cursor" src="/static/images/C64_cursor.gif" />
+        </div>
+        
+        
+    </body>
+</html>
