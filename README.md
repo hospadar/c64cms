@@ -1,4 +1,4 @@
-###C64 CMS
+### C64 CMS
 
 Extremely simple static site generator designed to render some markdown files and copy your static stuff to an output directory.
 Looks for markdown files (with ".md" extensions) in the source dir, renders them to html in the output dir, copying any other files it finds.
